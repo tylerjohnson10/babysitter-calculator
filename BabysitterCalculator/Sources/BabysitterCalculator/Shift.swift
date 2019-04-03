@@ -29,8 +29,8 @@ struct Shift {
      - parameters:
      - startDate: The start time of the shift.
      - endDate: The end time of the shift.
-     - returns: Success if the start and end time are valid, else a failure indicating the
-     validation that failed.
+
+     - returns: A new instance of a Shift if the provided times are valid.
      */
     static func makeShift(startDate: Date, endDate: Date) throws -> Shift {
         try validateTimeRange(from: startDate, to: endDate)
@@ -48,6 +48,16 @@ struct Shift {
 }
 
 private extension Shift {
+    /**
+     Validates the provided start/end times do not occur out-of-order chronologically.
+
+     - parameters
+     startTime - The time the babysitters shift is starting.
+     endTime - The time the babysitters shift is ending.
+
+     returns: Throws a ShiftValidationError.endTimeIsBeforeStartTime if the start/end time are not
+     in the correct order.
+     */
     private static func validateTimeRange(from startTime: Date, to endTime: Date) throws -> Void {
         let dateComponents = Calendar.current.dateComponents([.hour], from: startTime, to: endTime)
         guard let hoursWorked = dateComponents.hour, hoursWorked > 0 else {
