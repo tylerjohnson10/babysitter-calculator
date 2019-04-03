@@ -17,33 +17,16 @@ class PaymentCalculatorTests: XCTestCase {
         var dateComponents = DateComponents()
         dateComponents.hour = 1
 
-        let startTime = Date()
-        let endTime = Calendar.current.date(byAdding: dateComponents, to: startTime)!
-        let result = unitUnderTest.calculatePayment(forStartTime: startTime, endTime: endTime)
+        let startDate = Calendar.current.date(bySetting: .hour, value: 17, of: Date())!
+        let endDate = Calendar.current.date(byAdding: dateComponents, to: startDate)!
+        let shift = try! Shift.makeShift(startDate: startDate, endDate: endDate)
+        let result = unitUnderTest.calculatePayment(forShift: shift)
 
-        guard case .success(let payment) = result else {
+        guard case .success(let actualPayment) = result else {
             XCTFail("Expected success, got failure")
             return
         }
 
-        XCTAssertEqual(payment, expectedPayment)
-    }
-
-    func testItReturnsAnErrorWhenTheEndTimeIsBeforeTheStartTime() {
-        let expectedError: PaymentCalculationError = .endTimeIsBeforeStartTime
-
-        var dateComponents = DateComponents()
-        dateComponents.hour = -1
-
-        let startTime = Date()
-        let endTime = Calendar.current.date(byAdding: dateComponents, to: startTime)!
-        let result = unitUnderTest.calculatePayment(forStartTime: startTime, endTime: endTime)
-
-        guard case .failure(let actualError) = result else {
-            XCTFail("Expected failure, got success")
-            return
-        }
-
-        XCTAssertEqual(actualError, expectedError)
+        XCTAssertEqual(actualPayment, expectedPayment)
     }
 }

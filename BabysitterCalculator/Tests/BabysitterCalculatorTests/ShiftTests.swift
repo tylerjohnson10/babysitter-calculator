@@ -9,5 +9,22 @@ import XCTest
 @testable import BabysitterCalculator
 
 class ShiftTests: XCTestCase {
+    func testItThrowsAnErrorIfTheStartTimeIsTooEarly() {
+        var dateComponents = DateComponents()
+        dateComponents.hour = 1
 
+        let startDate = Calendar.current.date(bySetting: .hour, value: 12, of: Date())!
+        let endDate = Calendar.current.date(byAdding: dateComponents, to: startDate)!
+
+        XCTAssertThrowsError(try Shift.makeShift(startDate: startDate, endDate: endDate))
+    }
+
+    func testItThrowsAnErrorIfTheStartTimeIsBeforeTheEndTime() {
+        var dateComponents = DateComponents()
+        dateComponents.hour = -1
+
+        let startDate = Calendar.current.date(bySetting: .hour, value: 17, of: Date())!
+        let endDate = Calendar.current.date(byAdding: dateComponents, to: startDate)!
+        XCTAssertThrowsError(try Shift.makeShift(startDate: startDate, endDate: endDate))
+    }
 }

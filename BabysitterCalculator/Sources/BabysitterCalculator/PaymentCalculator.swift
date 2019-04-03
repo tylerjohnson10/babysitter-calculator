@@ -12,12 +12,7 @@ enum PaymentCalculationError: Error {
 }
 
 public final class PaymentCalculator {
-    func calculatePayment(forStartTime startTime: Date, endTime: Date) -> Result<Int, PaymentCalculationError> {
-        let dateComponents = Calendar.current.dateComponents([.hour], from: startTime, to: endTime)
-        guard let hoursWorked = dateComponents.hour, hoursWorked > 0 else {
-            return .failure(.endTimeIsBeforeStartTime)
-        }
-
+    func calculatePayment(forShift shift: Shift) -> Result<Int, PaymentCalculationError> {
         return .success(0)
     }
 }
