@@ -19,6 +19,16 @@ class ShiftTests: XCTestCase {
         XCTAssertThrowsError(try Shift.makeShift(startDate: startDate, endDate: endDate))
     }
 
+    func testItThrowsAnErrorIfTheEndTimeIsTooLate() {
+        var dateComponents = DateComponents()
+        dateComponents.hour = 12
+
+        let startDate = Calendar.current.date(bySetting: .hour, value: 17, of: Date())!
+        let endDate = Calendar.current.date(byAdding: dateComponents, to: startDate)!
+
+        XCTAssertThrowsError(try Shift.makeShift(startDate: startDate, endDate: endDate))
+    }
+
     func testItThrowsAnErrorIfTheStartTimeIsBeforeTheEndTime() {
         var dateComponents = DateComponents()
         dateComponents.hour = -1

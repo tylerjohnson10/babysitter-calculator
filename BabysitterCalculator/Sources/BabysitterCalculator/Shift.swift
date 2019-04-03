@@ -35,6 +35,7 @@ struct Shift {
     static func makeShift(startDate: Date, endDate: Date) throws -> Shift {
         try validateTimeRange(from: startDate, to: endDate)
         try validate(startDate: startDate)
+        try validate(endDate: endDate)
 
         return Shift(endDate: endDate, startDate: startDate)
     }
@@ -61,7 +62,7 @@ private extension Shift {
 
      - parameter startTime: The time the babysitter is starting
 
-     returns: .success if the provided startTime is valid
+     returns: Throws an error is the startTime is invalid
      */
     private static func validate(startDate: Date) throws -> Void {
         let dateComponents = Calendar.current.dateComponents([.hour], from: startDate)
@@ -72,6 +73,28 @@ private extension Shift {
         }
 
         guard validStartingHours.contains(hour) else {
+            throw ShiftValidationError.startTimeTooEarly
+        }
+
+        return ()
+    }
+
+    /**
+     Validates the end time is not too late.
+
+     - parameter endTime: The time the babysitter is done working.
+
+     returns: Throws an error is the endTime is invalid
+     */
+    private static func validate(endDate: Date) throws -> Void {
+        let dateComponents = Calendar.current.dateComponents([.hour], from: endDate)
+
+        guard let hour = dateComponents.hour else {
+            assertionFailure("The provided start date did not provide an hour")
+            throw ShiftValidationError.invalidDate
+        }
+
+        guard validEndingHours.contains(hour) else {
             throw ShiftValidationError.startTimeTooEarly
         }
 
