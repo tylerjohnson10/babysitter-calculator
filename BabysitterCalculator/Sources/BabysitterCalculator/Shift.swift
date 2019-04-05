@@ -58,10 +58,12 @@ struct Shift {
      Creates a new shift.
 
      - parameters:
-     - startDate: The start time of the shift.
-     - endDate: The end time of the shift.
+     - startTimeString: The start time of the shift in a string representation, such as 5pm.
+     - endTimeString: The end time of the shift in a string representation, such as 3am.
 
-     - returns: A new instance of a Shift if the provided times are valid.
+     - returns: A new instance of a Shift if the provided times are valid. If the end time comes
+     before the start time, it is assumed that the ending date is the following day on the
+     calendar.
      */
     static func makeShift(startTimeString: String, endTimeString: String) throws -> Shift {
         let startDate: Date
@@ -96,7 +98,7 @@ struct Shift {
     /// The start time of the shift.
     let startDate: Date
 
-    init(startDate: Date, endDate: Date) {
+    private init(startDate: Date, endDate: Date) {
         self.endDate = endDate
         self.startDate = startDate
     }
@@ -106,9 +108,9 @@ private extension Shift {
     /**
      Validates the start time is not too early in the day.
 
-     - parameter startTime: The time the babysitter is starting
+     - parameter startingHour: The time the babysitter is starting work.
 
-     returns: Throws an error is the startTime is invalid
+     returns: Throws an error is the start time is invalid
      */
     static func validate(startingHour hour: Int) throws {
         guard validStartingHours.contains(hour) else {
@@ -119,9 +121,9 @@ private extension Shift {
     /**
      Validates the end time is not too late.
 
-     - parameter endTime: The time the babysitter is done working.
+     - parameter endingHour: The time the babysitter is done working.
 
-     returns: Throws an error is the endTime is invalid
+     returns: Throws an error is the end time is invalid
      */
     static func validate(endingHour hour: Int) throws {
         guard validEndingHours.contains(hour) else {
