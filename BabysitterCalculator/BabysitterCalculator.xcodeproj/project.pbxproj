@@ -24,6 +24,8 @@
 		2FC8F67F22545C6700F0BC6A /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8F67E22545C6700F0BC6A /* Shift.swift */; };
 		2FC8F68022545C6700F0BC6A /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8F67E22545C6700F0BC6A /* Shift.swift */; };
 		2FC8F68222545C9600F0BC6A /* ShiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC8F68122545C9600F0BC6A /* ShiftTests.swift */; };
+		2FD55E632256A1E40083155E /* FamilyStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD55E622256A1E40083155E /* FamilyStrategy.swift */; };
+		2FD55E642256A1E40083155E /* FamilyStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD55E622256A1E40083155E /* FamilyStrategy.swift */; };
 		2FF3CBDF2253118700AC80FF /* PaymentCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3CBDE2253118700AC80FF /* PaymentCalculator.swift */; };
 		2FF3CBE1225311BD00AC80FF /* PaymentCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3CBE0225311BD00AC80FF /* PaymentCalculatorTests.swift */; };
 		2FF3CBE222531D1700AC80FF /* PaymentCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3CBDE2253118700AC80FF /* PaymentCalculator.swift */; };
@@ -53,6 +55,7 @@
 /* Begin PBXFileReference section */
 		2FC8F67E22545C6700F0BC6A /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 		2FC8F68122545C9600F0BC6A /* ShiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftTests.swift; sourceTree = "<group>"; };
+		2FD55E622256A1E40083155E /* FamilyStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyStrategy.swift; sourceTree = "<group>"; };
 		2FF3CBDE2253118700AC80FF /* PaymentCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCalculator.swift; sourceTree = "<group>"; };
 		2FF3CBE0225311BD00AC80FF /* PaymentCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCalculatorTests.swift; sourceTree = "<group>"; };
 		"BabysitterCalculator::BabysitterCalculator::Product" /* BabysitterCalculator */ = {isa = PBXFileReference; lastKnownFileType = text; path = BabysitterCalculator; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +139,7 @@
 				OBJ_9 /* main.swift */,
 				2FF3CBDE2253118700AC80FF /* PaymentCalculator.swift */,
 				2FC8F67E22545C6700F0BC6A /* Shift.swift */,
+				2FD55E622256A1E40083155E /* FamilyStrategy.swift */,
 			);
 			name = BabysitterCalculator;
 			path = Sources/BabysitterCalculator;
@@ -226,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				2FD55E632256A1E40083155E /* FamilyStrategy.swift in Sources */,
 				2FF3CBDF2253118700AC80FF /* PaymentCalculator.swift in Sources */,
 				2FC8F67F22545C6700F0BC6A /* Shift.swift in Sources */,
 				OBJ_23 /* main.swift in Sources */,
@@ -250,6 +255,7 @@
 				2FF3CBE222531D1700AC80FF /* PaymentCalculator.swift in Sources */,
 				OBJ_42 /* XCTestManifests.swift in Sources */,
 				2FC8F68022545C6700F0BC6A /* Shift.swift in Sources */,
+				2FD55E642256A1E40083155E /* FamilyStrategy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
