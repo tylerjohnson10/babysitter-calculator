@@ -33,7 +33,7 @@ struct Shift {
         case "8am":     return 8
         case "9am":     return 9
         case "10am":    return 10
-        case "11am":     return 11
+        case "11am":    return 11
         case "12pm":    return 12
         case "1pm":     return 13
         case "2pm":     return 14
@@ -83,6 +83,8 @@ struct Shift {
 
             startDate = Calendar.current.date(byAdding: startComponents, to: Date.startOfToday)!
             endDate = Calendar.current.date(byAdding: endComponents, to: dateOfEnding)!
+
+            try validateDateRange(startingDate: startDate, endingDate: endDate)
         }
 
         return Shift(startDate: startDate, endDate: endDate)
@@ -124,6 +126,25 @@ private extension Shift {
     static func validate(endingHour hour: Int) throws {
         guard validEndingHours.contains(hour) else {
             throw ShiftValidationError.invalidEntry(message: "End time is too late. Please enter a time of 4am or earlier.")
+        }
+    }
+
+    /**
+     Validates the time range is valid.
+
+     With the constraints of starting no earlier than 5pm and ending no later than 4am, we know a
+     12 hour shift is invalid. Therefore, entering start/end times like 5pm/5pm and 8pm/5pm will
+     be invalidate by this function because the shift length will be longer than 12 hours.
+
+     - parameter startingHour: The time the babysitter starts working.
+     - parameter endingHour: The time the babysitter is done working.
+
+     returns: Throws an error is the end time is invalid
+     */
+    static func validateDateRange(startingDate startDate: Date, endingDate endDate: Date) throws {
+        let hoursWorked = endDate.timeIntervalSince(startDate) / 60 / 60
+        guard hoursWorked < 12 else {
+            throw ShiftValidationError.invalidEntry(message: "Looks like you've entered an invalid date range. Please verify that your start time occurs before your end time.")
         }
     }
 }

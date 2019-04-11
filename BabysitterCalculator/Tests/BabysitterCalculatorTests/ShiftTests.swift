@@ -24,4 +24,12 @@ class ShiftTests: XCTestCase {
     func testItDoesNotThrowAnErrorIfTheEndTimeIsNotTooLate() {
         XCTAssertNoThrow(try Shift.makeShift(startTimeString: "5pm", endTimeString: "4am"))
     }
+
+    func testItThrowsAnErrorIfTheStartAndEndTimesAreOutOfOrder() {
+        XCTAssertThrowsError(try Shift.makeShift(startTimeString: "3am", endTimeString: "5pm"))
+    }
+
+    func testItThrowsAnErrorIfTheStartAndEndTimesAreTheSame() {
+        XCTAssertThrowsError(try Shift.makeShift(startTimeString: "5pm", endTimeString: "5pm"))
+    }
 }
