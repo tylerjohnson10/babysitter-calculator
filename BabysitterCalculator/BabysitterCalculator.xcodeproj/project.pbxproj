@@ -33,7 +33,6 @@
 		2FF3CBE222531D1700AC80FF /* PaymentCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3CBDE2253118700AC80FF /* PaymentCalculator.swift */; };
 		OBJ_23 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_41 /* BabysitterCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* BabysitterCalculatorTests.swift */; };
 		OBJ_42 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XCTestManifests.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		2FF3CBE0225311BD00AC80FF /* PaymentCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCalculatorTests.swift; sourceTree = "<group>"; };
 		"BabysitterCalculator::BabysitterCalculator::Product" /* BabysitterCalculator */ = {isa = PBXFileReference; lastKnownFileType = text; path = BabysitterCalculator; sourceTree = BUILT_PRODUCTS_DIR; };
 		"BabysitterCalculator::BabysitterCalculatorTests::Product" /* BabysitterCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BabysitterCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_12 /* BabysitterCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabysitterCalculatorTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 		OBJ_11 /* BabysitterCalculatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* BabysitterCalculatorTests.swift */,
 				OBJ_13 /* XCTestManifests.swift */,
 				2FF3CBE0225311BD00AC80FF /* PaymentCalculatorTests.swift */,
 				2FC8F68122545C9600F0BC6A /* ShiftTests.swift */,
@@ -257,7 +254,6 @@
 				2FC8F68222545C9600F0BC6A /* ShiftTests.swift in Sources */,
 				2F48A08922580A5500332945 /* Date+Extensions.swift in Sources */,
 				2FF3CBE1225311BD00AC80FF /* PaymentCalculatorTests.swift in Sources */,
-				OBJ_41 /* BabysitterCalculatorTests.swift in Sources */,
 				2FF3CBE222531D1700AC80FF /* PaymentCalculator.swift in Sources */,
 				OBJ_42 /* XCTestManifests.swift in Sources */,
 				2FC8F68022545C6700F0BC6A /* Shift.swift in Sources */,
