@@ -28,6 +28,7 @@ clean:
 
 build: clean
 	$(XCODEBUILD) build $(BUILD_FLAGS) $(XCPRETTY)
+	swift build
 
 test: clean
 	$(XCODEBUILD) test $(BUILD_FLAGS) $(XCPRETTY)
