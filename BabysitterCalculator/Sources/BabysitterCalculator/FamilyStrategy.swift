@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FamilyStrategy {
+enum FamilyStrategy: String {
     /// Family A's payment schedule, in chronological order for a day.
     private static let familyAPaymentShedule = [20, 20, 20, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 15]
     /// Family B's payment schedule, in chronological order for a day.
