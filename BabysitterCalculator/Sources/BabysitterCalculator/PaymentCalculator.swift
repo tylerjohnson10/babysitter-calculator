@@ -12,6 +12,12 @@ enum PaymentCalculationError: Error {
 }
 
 public final class PaymentCalculator {
+    private let familyStrategy: FamilyStrategy
+
+    init(strategy: FamilyStrategy) {
+        self.familyStrategy = strategy
+    }
+
     func calculatePayment(forShift shift: Shift) -> Result<Int, PaymentCalculationError> {
         return .success(0)
     }
