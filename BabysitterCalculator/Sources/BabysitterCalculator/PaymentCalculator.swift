@@ -19,6 +19,18 @@ public final class PaymentCalculator {
     }
 
     func calculatePayment(forShift shift: Shift) -> Result<Int, PaymentCalculationError> {
-        return .success(0)
+        var hoursWorked = [Bool](repeating: false, count: 24)
+        let shiftTimeInterval = shift.endDate.timeIntervalSince(shift.startDate)
+        let numberOfHoursWorked = Int(shiftTimeInterval / 60 / 60)
+
+        let startHour = Calendar.current.dateComponents([.hour], from: shift.startDate).hour!
+
+        for item in startHour..<startHour + numberOfHoursWorked {
+            let index = item % 24
+            hoursWorked[index] = true
+        }
+
+        let payment = zip(hoursWorked, familyStrategy.paymentSchedule).compactMap({ return $0 ? $1 : 0 }).reduce(0, { $0 + $1 })
+        return .success(payment)
     }
 }

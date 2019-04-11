@@ -11,20 +11,57 @@ import XCTest
 class PaymentCalculatorTests: XCTestCase {
     let unitUnderTest = PaymentCalculator(strategy: .a)
 
-    func testItCalculatesTheCorrectPaymentForOneHour() {
-        let expectedPayment = 0
+    /// Thrown when expecting a payment to be calculated successfully.
+    struct UnexpectedFailureError: Error {}
 
-        var dateComponents = DateComponents()
-        dateComponents.hour = 1
-
-        let shift = try! Shift.makeShift(startTimeString: "5pm", endTimeString: "4am")
+    func calculateExpectedPayment(from startTimeString: String, to endTimeString: String) throws -> Int {
+        let shift = try! Shift.makeShift(startTimeString: startTimeString, endTimeString: endTimeString)
         let result = unitUnderTest.calculatePayment(forShift: shift)
 
         guard case .success(let actualPayment) = result else {
-            XCTFail("Expected success, got failure")
-            return
+            throw UnexpectedFailureError()
         }
 
-        XCTAssertEqual(actualPayment, expectedPayment)
+        return actualPayment
+    }
+
+    func testItCalculatesTheCorrectPaymentFor5pmTo6pm() {
+        let expectedPayment = 15
+        do {
+            let actualPayment = try calculateExpectedPayment(from: "5pm", to: "6pm")
+            XCTAssertEqual(actualPayment, expectedPayment)
+        } catch {
+            XCTFail("Expected success, got an error: \(error)")
+        }
+    }
+
+    func testItCalculatesTheCorrectPayementFor5pmToMidnight() {
+        let expectedPayment = 105
+        do {
+            let actualPayment = try calculateExpectedPayment(from: "5pm", to: "12am")
+            XCTAssertEqual(actualPayment, expectedPayment)
+        } catch {
+            XCTFail("Expected success, got an error: \(error)")
+        }
+    }
+
+    func testItCalculatesTheCorrectPayementFor5pmTo4am() {
+        let expectedPayment = 185
+        do {
+            let actualPayment = try calculateExpectedPayment(from: "5pm", to: "4am")
+            XCTAssertEqual(actualPayment, expectedPayment)
+        } catch {
+            XCTFail("Expected success, got an error: \(error)")
+        }
+    }
+
+    func testItCalculatesTheCorrectPayementForMidnightTo4am() {
+        let expectedPayment = 80
+        do {
+            let actualPayment = try calculateExpectedPayment(from: "12am", to: "4am")
+            XCTAssertEqual(actualPayment, expectedPayment)
+        } catch {
+            XCTFail("Expected success, got an error: \(error)")
+        }
     }
 }
