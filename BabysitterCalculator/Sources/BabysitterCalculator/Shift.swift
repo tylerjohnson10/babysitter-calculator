@@ -8,12 +8,8 @@
 import Foundation
 
 enum ShiftValidationError: Error {
-    /// Indicates the end time is too late
-    case endTimeIsTooLate
     /// An invalid date was provided
     case invalidEntry(message: String)
-    /// Indicates it is too early to start work
-    case startTimeTooEarly
 }
 
 /**
@@ -71,11 +67,11 @@ struct Shift {
 
         switch (hour(from: startTimeString), hour(from: endTimeString)) {
         case (nil, nil):
-            throw ShiftValidationError.invalidEntry(message: "Invalid start time and end time: \(startTimeString), \(endTimeString)")
+            throw ShiftValidationError.invalidEntry(message: "Invalid start time and end time: \(startTimeString), \(endTimeString). Please format input, for example, as 5pm.")
         case (nil, _):
-            throw ShiftValidationError.invalidEntry(message: "Invalid start time: \(startTimeString)")
+            throw ShiftValidationError.invalidEntry(message: "Invalid start time: \(startTimeString). Please format input, for example, as 5pm.")
         case (_, nil):
-            throw ShiftValidationError.invalidEntry(message: "Invalid end time: \(endTimeString)")
+            throw ShiftValidationError.invalidEntry(message: "Invalid end time: \(endTimeString). Please format input, for example, as 5pm.")
         case (.some(let startHour), .some(let endHour)):
             try validate(startingHour: startHour)
             try validate(endingHour: endHour)
@@ -114,7 +110,7 @@ private extension Shift {
      */
     static func validate(startingHour hour: Int) throws {
         guard validStartingHours.contains(hour) else {
-            throw ShiftValidationError.startTimeTooEarly
+            throw ShiftValidationError.invalidEntry(message: "Start time is too early. Please enter a time of 5pm or later.")
         }
     }
 
@@ -127,7 +123,7 @@ private extension Shift {
      */
     static func validate(endingHour hour: Int) throws {
         guard validEndingHours.contains(hour) else {
-            throw ShiftValidationError.endTimeIsTooLate
+            throw ShiftValidationError.invalidEntry(message: "End time is too late. Please enter a time of 4am or earlier.")
         }
     }
 }
