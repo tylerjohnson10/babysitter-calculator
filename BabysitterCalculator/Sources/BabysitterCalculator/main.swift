@@ -1,5 +1,23 @@
 import Foundation
 
+var familyStrategy: FamilyStrategy?
+let arguments = CommandLine.arguments
+for (index, argument) in arguments.enumerated() {
+    if "--family" == argument {
+        let strategyArgument = arguments[index + 1]
+        guard let strategy = FamilyStrategy(rawValue: strategyArgument) else {
+            print("Enter the family you're working for using --family [a, b, c]")
+            exit(1)
+        }
+        familyStrategy = strategy
+    }
+}
+
+guard let familyStrategy = familyStrategy else {
+    print("Enter the family you're working for using --family [a, b, c]")
+    exit(1)
+}
+
 func getEntry() -> String? {
     let keyboard = FileHandle.standardInput
     let inputData = keyboard.availableData
@@ -19,7 +37,7 @@ guard let endingHourString = getEntry() else {
     exit(1)
 }
 
-let calculator = PaymentCalculator(strategy: .a)
+let calculator = PaymentCalculator(strategy: familyStrategy)
 
 do {
     let shift = try Shift.makeShift(startTimeString: startingHourString, endTimeString: endingHourString)
